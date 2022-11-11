@@ -12,20 +12,15 @@ contract FractionalNFT is ERC20, ERC721Holder, Ownable {
 	uint256 totalTokens;
     ERC721 nft;
 
-	constructor(address recipient, uint256 amountOfTokens, address nftContractAddress) ERC20("NFToken", "NFT") {
+	constructor(address recipient, uint256 amountOfTokens, address nftContractAddress) ERC20("NFToken", "TKN") {
         nft = ERC721(nftContractAddress);
-
-        // the (10 ** uint256(decimals()) done in frontend
-        totalTokens = amountOfTokens * (10 ** uint256(decimals()));
-	    _mint(recipient, amountOfTokens * (10 ** uint256(decimals())));
+        totalTokens = amountOfTokens;
+	    _mint(recipient, amountOfTokens);
     }
 
 	function redeem(address ownerAddress, uint256 amount) public onlyOwner returns(bool) {
         require((balanceOf(ownerAddress) == totalTokens), "Balance is not equal");
-
-        // change to _transfer() internal built-in function
         _transfer(ownerAddress, address(this), amount);
-        
         nft.transferFrom(address(this), ownerAddress, 1);
         return true;
     }
