@@ -10,6 +10,8 @@ import managerAbi from "../abis/FNFTManager.json";
 export default function Redeem() {
   const { data: signer } = useSigner();
   const [tokenAmount, setTokenAmount] = useState(BigNumber.from("0"));
+  const [smartContractAddress, setSmartContractAddres] = useState("");
+  const [tokenId, setTokenId] = useState("");
 
   const managerContract = new Contract(
     process.env.NEXT_PUBLIC_CONTRACT_MANAGER_ADDRESS!,
@@ -19,8 +21,8 @@ export default function Redeem() {
 
   async function redeemNFT() {
     const approvalTxn = await managerContract.redeem(
-      process.env.NEXT_PUBLIC_CONTRACT_NFT_ADDRESS,
-      1,
+      smartContractAddress,
+      tokenId,
       tokenAmount
     );
     await approvalTxn.wait();
@@ -45,12 +47,25 @@ export default function Redeem() {
         <ConnectButton />
       </div>
       <div className="flex flex-col w-full min-h-screen bg-gray-200 p-20">
-        <div className="flex flex-col w-1/4 mx-auto">
-          <p>Redeem your tokens and get your NFT back:</p>
+        <div className="flex flex-col w-1/2 mx-auto">
+          <p>
+            If you hold 100% of your tokens, you can redeem get your NFT back:
+          </p>
+          <input
+            className="p-2 mt-3"
+            placeholder="NFT smart contract address"
+            onChange={(e) => setSmartContractAddres(e.target.value)}
+          ></input>
           <input
             className="p-2 mt-3"
             type="number"
-            placeholder="token amount"
+            placeholder="NFT token ID"
+            onChange={(e) => setTokenId(e.target.value)}
+          ></input>
+          <input
+            className="p-2 mt-3"
+            type="number"
+            placeholder="Token amount (e.g. 1000)"
             onChange={(e) => setTokenAmount(parseEther(e.target.value))}
           ></input>
           <button
