@@ -1,4 +1,3 @@
-require("@nomiclabs/hardhat-waffle");
 require("dotenv").config({ path: ".env" });
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY;

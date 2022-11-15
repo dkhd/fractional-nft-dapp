@@ -3,7 +3,7 @@ import { BigNumber, Contract } from "ethers";
 import { parseEther } from "ethers/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
-import { useBalance, useSigner } from "wagmi";
+import { useSigner } from "wagmi";
 
 import managerAbi from "../abis/FNFTManager.json";
 

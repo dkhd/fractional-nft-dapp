@@ -5,10 +5,10 @@ import Link from "next/link";
 import { useAccount, useSigner } from "wagmi";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import { parseEther } from "ethers/lib/utils";
 
 import nftAbi from "../abis/NFT.json";
 import managerAbi from "../abis/FNFTManager.json";
-import { parseEther } from "ethers/lib/utils";
 
 export default function Home() {
   const [tokenAmount, setTokenAmount] = useState(BigNumber.from("0"));
