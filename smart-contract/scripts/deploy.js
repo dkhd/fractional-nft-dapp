@@ -1,10 +1,12 @@
+require("dotenv").config({ path: ".env" });
+
 const { ethers } = require("hardhat");
 
 async function main() {
   const NFTFactory = await ethers.getContractFactory("NFT");
   const FNFTManagerFactory = await ethers.getContractFactory("FNFTManager");
 
-  const nftContract = await NFTFactory.deploy();
+  const nftContract = await NFTFactory.deploy(process.env.NFT_TOKEN_ID);
   await nftContract.deployed();
 
   fNftManagerContract = await FNFTManagerFactory.deploy();

@@ -1,3 +1,5 @@
+require("@nomiclabs/hardhat-waffle");
+
 require("dotenv").config({ path: ".env" });
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
@@ -14,7 +16,7 @@ if (!RPC_URL) {
 module.exports = {
   solidity: "0.8.17",
   networks: {
-    goerli: {
+    zkevm: {
       url: RPC_URL,
       accounts: [PRIVATE_KEY],
     },

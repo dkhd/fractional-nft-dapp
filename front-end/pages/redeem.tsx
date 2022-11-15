@@ -48,7 +48,7 @@ export default function Redeem() {
       </div>
       <div className="flex flex-col w-full min-h-screen bg-gray-200 p-20">
         <div className="flex flex-col w-1/2 mx-auto">
-          <p>
+          <p className="text-center font-bold text-xl">
             If you hold 100% of your tokens, you can redeem get your NFT back:
           </p>
           <input

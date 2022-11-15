@@ -17,7 +17,7 @@ contract FNFTManager {
 
     function redeem(address nftTokenAddress, uint256 tokenId, uint256 amount) public {
         FractionalNFT subContract = fractionalContracts[nftTokenAddress][tokenId];
-        bool status = subContract.redeem(msg.sender, amount);
+        bool status = subContract.redeem(msg.sender, amount, tokenId);
         require(status, "Failed to redeem"); 
         subContract.destroy();
         delete fractionalContracts[nftTokenAddress][tokenId];
